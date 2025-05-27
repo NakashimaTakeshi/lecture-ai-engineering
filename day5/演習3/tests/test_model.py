@@ -172,6 +172,7 @@ def test_model_reproducibility(sample_data, preprocessor):
         predictions1, predictions2
     ), "モデルの予測結果に再現性がありません"
 
+
 def test_model_regression(train_model):
     """過去バージョンのモデルと比較して性能劣化がないか検証"""
     # 過去モデルのパス（例: titanic_model_prev.pkl）
@@ -191,6 +192,6 @@ def test_model_regression(train_model):
     current_accuracy = accuracy_score(y_test, current_model.predict(X_test))
 
     # 性能劣化がないことを確認（許容誤差: 0.01）
-    assert current_accuracy + 0.01 >= prev_accuracy, (
-        f"モデルの性能が劣化しています: 過去={prev_accuracy}, 現在={current_accuracy}"
-    )
+    assert (
+        current_accuracy + 0.01 >= prev_accuracy
+    ), f"モデルの性能が劣化しています: 過去={prev_accuracy}, 現在={current_accuracy}"
